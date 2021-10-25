@@ -1,0 +1,22 @@
+Problem 1:
+Tesla, because it defaults to the first value
+Mercedes, because it's going into the second value or index of 1
+
+Problem 2:
+It should throw an error because name isnt a value it's a key...
+The only thing logged should be elon
+
+Problem 3:
+12345, as it's refferncing the password variable
+The hashed password however is not insde the person dictionary therefore it is undefined.
+
+Problem 4:
+False
+True, as they both reference the only values that are equal inside the array.
+
+Problem 5:
+Value
+151833, as it's a reference to the second value.
+1 as thats the index of 0 inside the array
+5 as that is the index of 1 inside the array
+
