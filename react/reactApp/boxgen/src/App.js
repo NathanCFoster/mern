@@ -15,6 +15,7 @@ function App() {
     <div className="App">
       <AddBox submitColor={NewColor}/>
       <LeBoxes allColors={colors}/>
+      
     </div>
   );
 }
