@@ -5,9 +5,10 @@ import LeBoxes from './components/leboxes';
 import React, {useState} from 'react';
 
 function App() {
-  const [colors, setColors] = useState(["blue"]);
-  const NewColor = ( color ) => {
-    const updateColors = [...colors, color];
+  const [colors, setColors] = useState([{color: "blue", height: 100}]);
+  const NewColor = ( color , height) => {
+    const newCo = { color: color, height: height}
+    const updateColors = [...colors, newCo];
     setColors(updateColors);
   }
   

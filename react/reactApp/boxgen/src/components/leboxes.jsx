@@ -2,9 +2,10 @@ import React from 'react';
 
 
 const LeBoxes = (props) => {
-    const newStyle = (e) => {
+    const newStyle = (item) => {
         return {
-            backgroundColor: e
+            backgroundColor: item["color"],
+            height: item["height"]
         };
     }
     return(
