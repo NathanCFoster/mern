@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import './style.css';
 import { v4 as uid } from 'uuid';
 
 const Form = props => {
-    const [todos, allTD] = useState([{ id: uid(), content: "this" }, { id: uid(), content: "that" }]);
+    const results = JSON.parse(localStorage.getItem("todos"));
+    const [todos, allTD] = useState(
+        Array.isArray(results) ? results : [{id: uid(), content: "this"}]
+    );
     const [td, setTD] = useState("");
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos))
+    })
     return (
         <div className="row m-5">
             <form className="form col" onSubmit={(e) => {
@@ -21,7 +27,7 @@ const Form = props => {
                     <input type="submit" value="Add" className="btn btn-outline-dark" />
                 </div>
             </form>
-            <ul className="list-group list-group-flush col">
+            <ul className="list-group-flush col">
                 <TransitionGroup>
                     {todos.map(({ id, content }) => (
                         <CSSTransition
