@@ -32,6 +32,7 @@ const Form = props => {
                     <select id="dropdown" className="form-select" onChange={(e) => setDropdown(e.target.value)}>
                         <option value="people">People</option>
                         <option value="planets">Planets</option>
+                        <option value="starships">Starships</option>
                     </select>
                 </div>
                 <div className="col-auto">
