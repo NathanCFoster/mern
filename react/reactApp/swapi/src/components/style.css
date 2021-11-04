@@ -1,0 +1,18 @@
+.starship-enter {
+    transform:translate(1000px, 0);
+
+}
+
+.starship-enter-active {
+    transform: translate(0, 0);
+    transition: opacity 500ms, transform 500ms;
+}
+
+.starship-exit {
+    transform: translate(0, 0);
+}
+
+.starship-exit-active {
+    transform:translate(1000px, 0);
+    transition: translate 500ms;
+}

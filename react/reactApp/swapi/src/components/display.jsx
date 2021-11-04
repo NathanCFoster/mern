@@ -2,30 +2,38 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import obi from './download.jpeg'
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "./style.css";
 
 const Display = props => {
     const { thename, id } = useParams();
     const [thing, setThing] = useState({});
     const [world, setWorld] = useState({});
     const [starships, setStarships] = useState([])
+    const wrapper = React.createRef();
 
     useEffect(() => {
         var req = axios.get("https://swapi.dev/api/" + thename + "/" + id + "/").then(e => {
             setThing(e.data)
-            if (thing) {
+            if (thing && thename == "people") {
                 getPeople(e.data);
-            }}).catch(e => console.log(e));
+            }
+        }).catch(e => console.log(e));
     }, [])
-    const getPeople = (data) => {
-        axios.get(data.homeworld).then(e => setWorld(e.data)).catch(e => console.log(e));
-        for (let index = 0; index < data.starships.length; index++) {
-            axios.get(data.starships[index]).then(e => {
-                let allStars = [...starships];
-                allStars.push(e.data);
-                setStarships(allStars);
-            }).catch(e => console.log(e))
+    const getPeople = async (data) => {
+        try {
+            let something = await (await axios.get(data.homeworld)).data;
+            let results = [];
+            for (let index = 0; index < data.starships.length; index++) {
+                let temp = await axios.get(data.starships[index]);
+                results.push(temp.data);
+            }
+            setWorld(something);
+            setStarships(results);
+        } catch (error) {
+            console.log(error)
         }
-        
+
     }
 
     if (thing.name && thename == "people") {
@@ -43,11 +51,28 @@ const Display = props => {
                     <dt className="col-sm-3">Gender</dt>
                     <dd className="col-sm-9">{thing.gender}</dd>
                     <dt className="col-sm-3">Homeworld: </dt>
-                    <dd className="col-sm-9"><a href={"/" + world.id} className="nav-link">{world.name}</a></dd>
-                    <dt className="col-sm-3">Random Starship: </dt>
-                    {starships.map((item, i) => 
-                        <dd className="col-sm-9" key={i}>{item.name}</dd>
-                    )}
+                    {world.name ? 
+                    <CSSTransition
+                        timeout={500}
+                        classNames="starship">
+                        <dd className="col-sm-9"><a href={"/" + world.id} className="nav-link">{world.name}</a></dd>
+                    </CSSTransition>
+                    :
+                    ""
+                    }
+                    <dt className="col-sm-3">Starships: </dt>
+                    <div className="col-sm-9">
+                        <TransitionGroup className="starships">
+                            {starships.map((item, i) =>
+                                <CSSTransition
+                                    timeout={500}
+                                    classNames="starship"
+                                    key={item.url}>
+                                    <dd key={item.url} >{item.name}</dd>
+                                </CSSTransition>
+                            )}
+                        </TransitionGroup>
+                    </div>
                 </div>
             </div>
         );
