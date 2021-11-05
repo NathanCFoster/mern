@@ -35,7 +35,7 @@ const Display = props => {
         }
 
     }
-
+    
     if (thing.name && thename == "people") {
         world.id = thing.homeworld.slice(22);
         return (
@@ -54,8 +54,9 @@ const Display = props => {
                     {world.name ? 
                     <CSSTransition
                         timeout={500}
-                        classNames="starship">
-                        <dd className="col-sm-9"><a href={"/" + world.id} className="nav-link">{world.name}</a></dd>
+                        classNames="starship"
+                        nodeRef={wrapper}>
+                        <dd className="col-sm-9" ref={wrapper}><a href={"/" + world.id} className="nav-link">{world.name}</a></dd>
                     </CSSTransition>
                     :
                     ""

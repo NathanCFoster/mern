@@ -5,7 +5,7 @@
 
 .starship-enter-active {
     transform: translate(0, 0);
-    transition: opacity 500ms, transform 500ms;
+    transition: transform 500ms;
 }
 
 .starship-exit {
