@@ -1,0 +1,18 @@
+.product-enter {
+    transform:translate(1000px, 0);
+
+}
+
+.product-enter-active {
+    transform: translate(0, 0);
+    transition: transform 500ms;
+}
+
+.product-exit {
+    transform: translate(0, 0);
+}
+
+.product-exit-active {
+    transform:translate(1000px, 0);
+    transition: translate 500ms;
+}
