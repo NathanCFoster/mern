@@ -14,5 +14,5 @@
 
 .product-exit-active {
     transform:translate(1000px, 0);
-    transition: translate 500ms;
+    transition: transform 500ms;
 }

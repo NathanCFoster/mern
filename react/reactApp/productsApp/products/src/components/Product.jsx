@@ -11,9 +11,13 @@ export default () => {
     }, [])
 
     return (
-        <div className="m-5">
-        <a href="/" className="nav-link text-start">Home</a>
-            <p className="display-2 mb-3 text-start">{product.title}</p>
+        <div className="container">
+            <div className="nav m-3">
+                <a href="/" className="nav-link">Home</a>
+                <a href={`/edit/${product._id}`} className="nav-link">Update</a>
+                <a href={"/delete/" + product._id} className="nav-link">Delete</a>
+            </div>
+            <p className="display-2 m-3 text-start">{product.title}</p>
             <div className="row m-5 container">
                 <dt className="col-sm-3">Price:</dt>
                 <dd className="col-sm-9">${product.price}</dd>

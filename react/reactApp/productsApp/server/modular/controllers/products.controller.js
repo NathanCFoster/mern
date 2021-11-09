@@ -23,3 +23,9 @@ module.exports.deleteProduct = (req, res) => {
         .then(e => res.json(e))
         .catch(e => res.json({error: e}));
 }
+
+module.exports.updateProduct = (req, res) => {
+    Product.updateOne({ _id: req.params._id}, req.body, { new: true, runValidators: true })
+        .then(e => res.json(e))
+        .catch(e => res.json({error:e}));
+}
