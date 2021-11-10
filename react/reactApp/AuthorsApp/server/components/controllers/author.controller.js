@@ -19,8 +19,8 @@ module.exports.createAuthor = (req, res) => {
 }
 
 module.exports.updateAuthor = (req, res) => {
-    Author.author.updateOne({_id: req.params.id}, req.body, { new:true, runValidators: true})
-        .then( e => res.json(e))
+    Author.author.updateOne({_id: req.params._id}, req.body, { new:true, runValidators: true})
+        .then(e => res.json(e))
         .catch(e => res.json({error: e}));
 }
 
@@ -68,6 +68,12 @@ module.exports.updateUser = (req, res) => {
 
 module.exports.deleteUser = (req, res) => {
     Author.user.deleteOne({_id:req.params._id})
+        .then(e => res.json(e))
+        .catch(e => res.json({error: e}));
+}
+
+module.exports.sendMsg = (req, res) => {
+    Author.message.create(req.body)
         .then(e => res.json(e))
         .catch(e => res.json({error: e}));
 }

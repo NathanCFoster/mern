@@ -44,13 +44,13 @@ export default (props) => {
         }).then(() => {
             socket.emit("updateUser", props.uid)
         })
-        .catch(e => console.log(e));
+            .catch(e => console.log(e));
     }
 
     const unFav = id => {
         let res = [];
         for (let index = 0; index < favs.length; index++) {
-            if(favs[index]._id != id) {
+            if (favs[index]._id != id) {
                 res.push(favs[index]._id);
             }
         }
@@ -58,27 +58,30 @@ export default (props) => {
         axios.put("http://localhost:8000/api/users/update/" + user._id + "/", {
             "favorites": res
         }).then(() => socket.emit("updateUser", props.uid))
-        .catch(e => console.log(e));
+            .catch(e => console.log(e));
     }
- 
+
     return (
         <div className="row">
-        <Link to="/create" className="nav-link text-start ms-3 mt-3">Create new author</Link>
+            <div className="nav">
+                <Link to="/create" className="nav-link text-start ms-3 mt-3">Create new author</Link>
+                <Link to="/logout" className="nav-link text-start ms-3 mt-3">Logout</Link>
+            </div>
             <div className="col m-5">
                 <p className="display-3">{user.username}'s favorite authors!</p>
                 <TransitionGroup
-                className="list-group list-group-flush">
-                {favs.map(({ _id, name}) => 
-                    <CSSTransition
-                    classNames="favorites"
-                    timeout={{enter: 500, exit: 500}}
-                    key={_id}>
-                        <li className="list-group-item d-flex justify-content-between">
-                            <Link to={"/author/" + _id + "/"} className="nav-link">{name}</Link>
-                            <Link to="" onClick={() => unFav(_id)} className="text-dark nav-link">Unfavorite</Link>
-                        </li>
-                    </CSSTransition>
-                )}
+                    className="list-group list-group-flush">
+                    {favs.map(({ _id, name }) =>
+                        <CSSTransition
+                            classNames="favorites"
+                            timeout={{ enter: 500, exit: 500 }}
+                            key={_id}>
+                            <li className="list-group-item d-flex justify-content-between">
+                                <Link to={"/author/" + _id + "/"} className="nav-link">{name}</Link>
+                                <Link to="" onClick={() => unFav(_id)} className="text-dark nav-link">Unfavorite</Link>
+                            </li>
+                        </CSSTransition>
+                    )}
                 </TransitionGroup>
             </div>
             <div className="col m-5">
@@ -91,8 +94,8 @@ export default (props) => {
                             key={_id}>
                             <li className="list-group-item d-flex justify-content-between">
                                 <Link to={"/author/" + _id + "/"} className="nav-link">{name}</Link>
-                                
-                                { user.favorites && !user.favorites.includes(_id) && <a href="#" onClick={() => newFav(_id)} className="nav-link text-dark">Favorite</a>}
+
+                                {user.favorites && !user.favorites.includes(_id) && <a href="#" onClick={() => newFav(_id)} className="nav-link text-dark">Favorite</a>}
                             </li>
                         </CSSTransition>
                     )}

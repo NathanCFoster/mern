@@ -33,3 +33,33 @@
     transform: translate(-1000px, 0);
     transition: transform 500ms cubic-bezier(0.6, -0.3, 0.7, 0.05);
 }
+
+.chat {
+    height: 80vh;
+}
+
+.chat-msg-enter {
+    transform: scale(0);
+    transform: rotateX(1000deg);
+}
+
+.chat-msg-enter-active {
+    transform: rotate(0);
+    transform: scale(1);
+    transition: transform 300ms;
+}
+
+.chat-msg-exit {
+    transform: rotate(0);
+    transform: scale(1);
+}
+
+.chat-msg-exit-active {
+    transform: scale(0);
+    transform: rotate(2.5turn);
+    transition: transform 300ms;
+}
+
+.msg {
+    width: 70vh;
+}

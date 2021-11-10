@@ -36,8 +36,16 @@ const UserSchema = new mongoose.Schema({
     favorites: [String]
 });
 
+const MessageSchema = new mongoose.Schema({
+    sentby: String,
+    message: String,
+    room: String
+})
+
 const Author = mongoose.model("Author", AuthorSchema);
 const User = mongoose.model("User", UserSchema);
+const Message = mongoose.model("Message", MessageSchema)
 
 module.exports.author = Author;
 module.exports.user = User;
+module.exports.message = Message;

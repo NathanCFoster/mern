@@ -15,5 +15,7 @@ module.exports = app => {
     app.post('/api/users/new', controller.createUser);
     app.put('/api/users/update/:_id', controller.updateUser);
     app.delete('/api/users/delete/:_id', controller.deleteUser);
+    //messages
+    app.post('/api/messages/new', controller.sendMsg);
 }
 

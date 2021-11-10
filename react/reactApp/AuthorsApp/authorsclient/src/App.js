@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
 import LandingPage from './components/LandingPage';
 import CreateAuthor from './components/CreateAuthor';
+import AuthorChat from './components/AuthorChat';
+import Logout from './components/Logout';
+import EditAuthor from './components/EditAuthor';
 
 function App() {
   const results = localStorage.getItem("uid");
@@ -33,6 +36,9 @@ function App() {
               </div>
           } />
           <Route path="/create" element={<CreateAuthor />} />
+          <Route path="/author/:_id" element={<AuthorChat uid={uid} />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/edit/:_id" element={<EditAuthor />} />
         </Routes>
       </BrowserRouter>
     </div>

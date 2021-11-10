@@ -46,7 +46,7 @@ export default (props) => {
                 }
                 setErrs(updatedErrs);
                 // if there still isn't any errors login to the account!
-                props.setID(e.data._id)
+                props.setID(e.data["_id"])
             }).catch(e => console.log(e))
         }
     }, [errs])
