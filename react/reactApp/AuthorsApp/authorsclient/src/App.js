@@ -30,14 +30,14 @@ function App() {
               <LandingPage uid={uid} />
               :
               <div className="row">
-              <p className="display-1 m-3">Welcome to Authors Paradise</p>
+                <p className="display-1 m-3">Welcome to Authors Paradise</p>
                 <Login setID={login} />
                 <Register setID={login} />
               </div>
           } />
           <Route path="/create" element={<CreateAuthor />} />
           <Route path="/author/:_id" element={<AuthorChat uid={uid} />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route path="/logout" element={<Logout setID={login} />} />
           <Route path="/edit/:_id" element={<EditAuthor />} />
         </Routes>
       </BrowserRouter>

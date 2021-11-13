@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router";
 import { useEffect } from "react"; 
 
-export default () => {
+export default (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        localStorage.setItem("uid", "");
+        props.setID("");
         navigate("/");
     }, [])
+
     return(
         <div>
 
