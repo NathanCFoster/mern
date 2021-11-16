@@ -40,7 +40,7 @@ const MessageSchema = new mongoose.Schema({
     sentby: String,
     message: String,
     room: String
-})
+});
 
 const Author = mongoose.model("Author", AuthorSchema);
 const User = mongoose.model("User", UserSchema);
